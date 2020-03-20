@@ -14,11 +14,11 @@ export class FilmService {
   constructor(private http: HttpClient) { }
 
   searchFilms(title: string, type: string){
-    this.url = `http://www.omdbapi.com/?s=${encodeUri(title)}&type=${type}$apiKey=${this.apiKey}`;
+    this.url = `http://www.omdbapi.com/?s=${encodeURI(title)}&type=${type}&apiKey=${this.apiKey}`;
     return this.http.get<IFilms>(this.url).pipe(map(results => results['Search']));
   }
 
   getDetailsFilm(id: string){
-    return this.http.get<IFilms>(`http://www.omdbapi.com/?i=${id}&plot=full$apiKey=${this.apiKey}`)
+    return this.http.get<IFilms>(`http://www.omdbapi.com/?i=${id}&plot=full&apiKey=${this.apiKey}`)
   }
 }
