@@ -18,14 +18,17 @@
 </ion-select>
 </ion-item>
 <ion-list>
-  <ion-item button *ngFor="let film of (results | async)">
+  <ion-item button *ngFor="let film of (results | async)" [routerLink]="['/', 'film', 'film.imdbID,']">
     <ion-avatar slot="start">
-      <img src="{{film.Poster}}" alt="{{film.Title}}">
+      <img src="{{film.Poster}}" alt="{{film.Title}}" *ngIf="film.Poster != 'N/A'">
     </ion-avatar>
     <ion-label text-wrap>
       <h3>{{film.Title}}</h3>
       {{film.Year}}
     </ion-label>
+    <ion-icon slot="end" *ngIf="film.Type === 'movie'" name="videocam"></ion-icon>
+    <ion-icon slot="end" *ngIf="film.Type === 'series'" name="tv"></ion-icon>
+    <ion-icon slot="end" *ngIf="film.Type === 'episode'" name="tablet-portrai"></ion-icon>
   </ion-item>
 </ion-list>
 </ion-content>
